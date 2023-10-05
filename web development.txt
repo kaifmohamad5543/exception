@@ -1,0 +1,805 @@
+source code of the main 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+    <!-- font make the awesome -->
+    <link rel="sytlesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- custom to design the css  -->
+    
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+        *{
+            font-family: 'Nunito', sans-serif;
+            border: none;
+            text-decoration: none;
+            outline: none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+            text-transform: capitalize;
+            transition: all .2s linear;
+        }
+
+        html {
+            font-size: 67%;
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+            overflow-x: hidden;
+            /* &:scroll-behavior: ; */
+
+        }
+    
+        body {
+            background: black;
+        }
+        
+        /* this is a header star6t fromt */
+        .header {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.9%;
+            z-index: 1000;
+            background: black;
+        }
+
+
+        #menu-btn {
+            display: inline;
+
+        }
+
+        .logo {
+            font-weight: bolder;
+            color: wheat;
+            font-size: 2.5rem;
+        }
+
+        span {
+            color: red;
+        }
+
+        .navbar a {
+            display: inline-block;
+            padding: 1.5rem 1.6rem;
+            font-size: 2.5rem;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .navbar a:hover {
+            background-color: aqua;
+        }
+
+
+        /* media querire */
+        @media (max-width:900px) {
+  
+               
+            #menu-btn .fa-times {
+                transform: rotate(180edg);
+            }
+
+            .header {
+                padding: 0.2rem;
+            }
+
+        }
+
+        @media (max-width:450px) {
+            html {
+                font-size: 55%;
+            }
+
+            .header {
+                padding: 2rem;
+            }
+
+            .navbar {
+                position: absolute;
+                top: 99%;
+                left: 0%;
+                right: 0%;
+                background: black;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 94% 0);
+
+
+            }
+
+            .navbar active {
+                clip-path: polygon(0 0, 100% 1%, 100% 100%, 0% 100%);
+            }
+
+            .navbar a {
+                display: block;
+                font-size: 2rem;
+            }
+
+
+        }
+
+        .about {
+            gap: 3rem;
+        }
+
+        .image {
+            margin-top: 5rem;
+        }
+
+        /* this is a section paprt */
+        section {
+            padding: 6rem;
+        }
+
+        .home {
+            padding: 0px;
+            margin-top: 6.5rem;
+        }
+
+        .slide {
+            min-height: 70vh;
+            background-size: cover !important;
+            background-position: center !important;
+            padding: 24rem 24%;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+        }
+
+        .content {
+            width: 60rem;
+
+        }
+
+        .content span {
+            font-size: 2.5rem;
+            color: white;
+
+        }
+
+        .content h3 {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .btn {
+            margin-top: 1rem;
+            display: inline-block;
+            padding: 1rem 2.8rem;
+            background: linear-gradient(130deg, #9e9e9e 93%, transparent 90%);
+            color: white;
+            cursor: pointer;
+            font-size: 1.7rem;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: aqua;
+        }
+
+        /* wehave correct the java script first */
+        .swiper-pagination-bullet {
+            height: 2rem;
+            width: 2rem;
+            background: white;
+            border-radius: 10px;
+
+        }
+
+        .swiper-pagination-bullet-active {
+            background: red;
+
+        }
+
+        .about {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 8rem;
+            margin: 12px;
+
+
+
+        }
+
+        #about .image {
+            flex: 21 32 45rem;
+            position: relative;
+            
+
+        }
+
+        .image img {
+            width: 100%;
+
+            padding: 2rem;
+        }
+
+
+        .content {
+            flex: 1 1 42rem;
+            padding: 2rem;
+
+        }
+
+        .content span {
+            font-size: 3rem;
+            color: red;
+        }
+
+        ::before,
+        ::after {
+            content: '';
+            position: relative;
+            /* background: red; */
+            /* height: 14rem; */
+            /* width: 15rem; */
+            z-index: -1;
+
+        }
+
+        ::before {
+            top: 0px;
+            left: 0px;
+        }
+
+        ::after {
+            bottom: 0px;
+            right: 0px;
+        }
+
+        #little {
+            font-size: 4rem;
+            color: white;
+            margin-top: .5rem;
+
+        }
+
+        .box-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        #box {
+            flex: 1 1 20rem;
+        }
+
+        #box h3 {
+            font-size: 3rem;
+            color: white;
+        }
+
+        h3 i {
+            padding-right: 2.5rem;
+            color: red;
+        }
+
+        p {
+            font-size: 1.9rem;
+            color: lightgoldenrodyellow;
+            padding: 1rem 0;
+            line-height: 2;
+            display: flex;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+        }
+        /* this is a features of thrid line */
+     img{
+        width: 34%;
+        padding: 1rem;
+     }  
+   
+.image img{
+    width: 101%;
+    padding: 1rem;
+}
+.heading{
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+.heading::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+    height: .1rem;
+    width: 100%;
+    background: lightblue;
+    z-index: -1;
+}
+.heading span{
+    font-size: 3rem;
+    color:white;
+    background: black;
+    border: .1rem solid white;
+    margin: .5rem 1.5rem;
+    
+   
+}
+.Pracing{
+   display: flex;
+   
+   margin: 10px;
+   flex-wrap: wrap;
+   gap: 13rem;
+
+}
+.Pracing{
+    @include grid(32rem);
+}
+.information span{
+font-size: 3rem;
+color: white;
+}
+.information h3{
+    font-size: 4rem;
+    padding-top: .5rem;
+    color: wheat;
+}
+.information p{
+    line-height: 2;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    color: wheat;
+}
+.information i{
+    color: red;
+    padding: 1rem;
+    font-size: 2rem;
+}
+.plan basic{
+    text-align: center;
+    padding: 2rem;
+}
+.plan h3{
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    color: white;
+}
+.price{
+    font-size: 7rem;
+    font-weight: bolder;
+    color: rgb(70, 12, 12);
+}
+.price span{
+    color:red;
+    font-size: 6rem;
+}
+.plan p{
+    line-height: 2;
+    padding: 1rem 0;
+    font-size: 1.4rem;
+    color: wheat;
+}
+.plan i{
+    color: red;
+    padding: 1rem;
+    font-size: 2rem;
+}
+.trainer .boxecontainer{
+    @include grid(29rem);
+    display: grid;
+    grid-template-columns:523px 523px 523px;
+  
+    top: 0px;
+    align-items: center;
+    height: 700px;
+    background-size: cover !important;
+            background-position: center !important;
+   
+}
+.boxecontainer .box{
+    height: 40rem;
+    overflow: hidden;
+    position: relative;
+}
+.boxecontainer img{
+height: 100%;
+width: 100%;
+margin: 20px;
+padding: 0px;
+object-fit: cover;
+background-size: cover !important;
+            background-position: center !important;
+}
+.boxecontainer .content{
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    /* background: beige; */
+    padding: 2rem;
+    transform: translateY(7rem);
+
+}
+.boxecontainer:hover .content{
+    transform: translateY(0);
+
+}
+
+.boxecontainer span{
+    font-size: 1.5rem;
+    color: red;
+}
+.boxecontainer h3{
+    font-size: 2rem;
+    color: white;
+}
+.boxecontainer .share{
+    padding-top: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: .1rem;
+}
+.share a{
+    font-size: 2rem;
+    color: wheat;
+    margin-top: 1.5rem;
+}
+.share a:hover{
+    color: red;
+}
+
+
+    </style>
+
+</head>
+
+<body>
+    <!-- header section from the code -->
+
+    <header class="header">
+        <a href="#" class="logo"><span>BE</span>FIT</a>
+
+        <!-- this is a some erore -->
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <!-- <a href="#features">features</a> -->
+            <a href="#Pracing">Pricing</a>
+            <a href="#trainers">Trainers</a>
+            <a href="jero.html">sign in</a>
+            <a href="login1.html">Log in</a>
+
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+        <div class="swiper home-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>be strong,be fit</span>
+                        <h3>Make yourself stronger than your excuse</h3>
+                        <a href="#" class="btn">Get started</a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide"
+                    style="background:url(hero2.jpg) ;">
+                    <div class="content">
+                        <span>be strong,be fit</span>
+                        <h3>Make yourself stronger than your excuse</h3>
+                        <a href="#" class="btn">Get started</a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide"
+                    style="background:url(https://images.unsplash.com/photo-1546483875-ad9014c88eba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=782&q=80) no-repeat ;">
+                    <div class="content">
+                        <span>be strong,be fit</span>
+                        <h3>Make yourself stronger than your excuse</h3>
+                        <a href="#" class="btn">Get started</a>
+                    </div>
+                </div>
+                <!-- <div class="swiper-pagination"></div> -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <!-- about section starts -->
+    <section class="about" id="about">
+        <div class="image">
+           <img src="hero1.jpg" alt="">
+        </div>
+        <div class="content">
+            <span>about us</span>
+            <h3 id="little">Every day to chance to become better day by day</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit praesentium dolores pariatur
+                voluptatem doloremque nemo tenetur asperiores. Placeat quia rem adipisci quas, laudantium tempore et
+                quod non neque fugiat facilis?</p>
+            <div class="box-container">
+                <div id="box">
+                    <h3><i class="fas fa-check"></i>body and mind</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt harum vel voluptas.</p>
+                </div>
+                <div id="box">
+                    <h3><i class="fas fa-check"></i>healthy life</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, esse?</p>
+                </div>
+                <div id="box">
+                    <h3><i class="fas fa-check"></i>stategeious</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, consequatur.</p>
+                </div>
+            </div>
+            <a href="#" class="btn"> read more</a>
+        </div>
+    </section>
+
+
+    <!-- this is a end the section -->
+
+
+    <!-- this is a featurea the seasion -->
+<section class="Pracing" id="Pracing">
+    <div class="information">
+        <span>pracing plan</span>
+        <h3>affordable pracing  plan for your self</h3>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus, beatae.</p>
+        <p><i class="fas fa-check">cardio exercise</i></p>
+        <p><i class="fas fa-check">weight lifting</i></p>
+        <p><i class="fas fa-check">diet plan</i></p>
+        <p><i class="fas fa-check">overall results</i></p>
+        <a href="#" class="btn">all pracing</a>a
+    </div>
+    <div class="plan">
+        <div class="list">
+            <h3>basic plan</h3>
+            <div class="price"><span>$</span><span>30</span><span>/mo</span></div>
+            <p><i class="fas fa-check">personl training</i></p>
+            <p><i class="fas fa-check">cardio exercise</i></p>
+            <p><i class="fas fa-check">cardio exercise</i></p>
+            <p><i class="fas fa-check">overall result</i></p>
+
+        </div>
+        <a href="#" class="btn">get started</a>
+    </div>
+
+    <div class="plan">
+        <div class="list">
+            <h3>premuim plan</h3>
+            <div class="price"><span>$</span><span>30</span><span>/mo</span></div>
+            <p><i class="fas fa-check">personl training</i></p>
+            <p><i class="fas fa-check">cardio exercise</i></p>
+            <p><i class="fas fa-check">cardio exercise</i></p>
+            <p><i class="fas fa-check">overall result</i></p>
+
+        </div>
+        <a href="#" class="btn">get started</a>
+    </div>
+</section>
+
+    
+<section class="trainers" id="trainer">
+    <h1 class="heading"><span>trainers</span></h1>
+    <div class="boxecontainer">
+
+        <div class="box">
+            <img src="sss.jpg" alt="">
+            <div class="content">
+                <span>expert training</span>
+                <h3>future</h3>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-pinterest"></a>
+                    <a href="#" class="fab fa-linkedlin"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="kkkk.jpg" alt="">
+            
+            <div class="content">
+                <span>expert training</span>
+                <h3>kaif</h3>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, incidunt?</p> -->
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-pinterest"></a>
+                    <a href="https://www.google.com" class="fab fa-linkedlin">linkedlin</a>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <img src="hero4.jpg" alt="">
+            <div class="content">
+                <span>expert training</span>
+                <h3>Sartaz</h3>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-pinterest"></a>
+                    <a href="#" class="fab fa-linkedlin"></a>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <img src="pooja.jpg" alt="">
+            <div class="content">
+                <span>expert training</span>
+                <h3>ARzoo</h3>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-pinterest"></a>
+                    <a href="#" class="fab fa-linkedlin"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+            </section>
+    
+            
+       
+
+
+
+
+
+
+    
+    
+</body>
+
+</html>
+
+
+#this is a login 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          body{
+margin: 0%;
+padding: 0%; 
+font-family: sans-serif;
+/* background-image:url("https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80") ; */
+background-size: cover;
+background-position: center;
+background-color: #000000;
+}
+.input-box
+{
+   
+    border-radius: 15px;
+   padding: 10px;
+    margin:10px ;
+    width: 81%;
+    border: 1px solid #999;
+    outline: none;
+}
+button 
+{
+    color:#1c8adb;
+    width: 74%;
+    padding: 10px;
+    border-radius: 20px;
+    font-size:15px;
+    margin: 10px 0;
+    border:none;
+    outline: none;
+    cursor: pointer;
+}
+hr {
+    margin-top: 20px;
+    width: 80%;
+}
+.or 
+{
+    background: #fff;
+    width:30px;
+    margin:-19px auto 10px;
+}
+img{
+    width: 45px;
+    margin-top:21px; 
+    position:static;
+  
+}
+.login-form
+{
+    width: 300px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    background: rgb(20, 118, 135);
+    padding: 35px;
+    margin:  auto;
+    text-align: center;
+    border-radius: 15px;
+}
+h1 {
+    text-align: center;
+    color:black;
+    margin: 13px;
+    font-size: 3rem;
+}
+.kaif{
+    color: #000000;
+}
+
+    </style>
+</head>
+<body>
+    <br>
+    <br><br><br><br>
+    
+
+    <div class="login-form">
+        <img src="kaif.png">
+        <br><br>
+        <h1>login</h1>
+        <form action="./login.php" method="POST">
+         <input type="user name"class="input-box" placeholder="user name">
+          <input type="password"class="input-box" placeholder="password">
+          <!-- <input type="number" class="input-box" placeholder="Phone number"> -->
+           <button type="submit" value="login">Log in</button>
+           
+           
+           
+           <br><br><br>
+           </form>
+           
+</body>
+</html>
+
+#this is a sign up form
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Sign Up Form</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    </head>
+    <body>
+        <br>
+        <br><br><br><br>
+        
+
+        <div class="sign-up-form">
+            <img src="C:\Users\Asus\Downloads\user.png">
+            <br><br>
+            <h1>Sign Up Now</h1>
+            <form>
+             <input type="email"class="input-box" placeholder="Your Email">
+              <input type="password"class="input-box" placeholder="password">
+                <p><span> <input type="checkbox"</span> I agree to the term of services</p>
+                <button type="button" class="signup-btn">Sign up</button>
+                <hr>
+                <p class="or">OR</p>
+                <button type="button" class="signup-btn">Login with twitter</button>
+                <p> Do you have account ? <a href="login.html"> Sign in</a></p>
+
+            </form>
+            
+        </div>
+    </body>
+</html>
